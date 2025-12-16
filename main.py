@@ -30,7 +30,7 @@ for book in filtered_books:
 
 # Задание 3
 bibliography = random.sample(rows, 20)
-
+print(bibliography)
 with open('bibliography.txt', 'w', encoding='utf-8') as file:
     for index, book in enumerate(bibliography, start=1):
         file.write(f"{index}. {book[AUTHOR_KEY]}. {book[TITLE_KEY]} - {get_year(book[DATE_KEY])}\n")
@@ -42,7 +42,7 @@ root = tree.getroot()
 
 print('Задание 4:')
 for valute in root.findall('Valute'):
-    Nominal = valute.find('Nominal').text
-    if Nominal == 1:
-        Name = valute.find('Name').text
-        print(Name)
+    nominal = int(valute.find('Nominal').text)
+    if nominal == 1:
+        name = valute.find('Name').text
+        print(name)
