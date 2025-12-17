@@ -17,6 +17,7 @@ count = sum(len(row[TITLE_KEY]) > 30 for row in rows)
 print('Задание 1:', count)
 
 # Задание 2
+print('\nЗадание 2:')
 author = input("Автор:")
 filtered_books = []
 for row in rows:
@@ -24,23 +25,24 @@ for row in rows:
     if author in row[AUTHOR_KEY] and year in {2014, 2016, 2017}:
         filtered_books.append(row)
 
-print('Задание 2:')
-for book in filtered_books:
-    print(book[AUTHOR_KEY], book[TITLE_KEY], get_year(book[DATE_KEY]))
+if not filtered_books:
+    print('Книг не найдено')
+else:
+    for book in filtered_books:
+        print(book[AUTHOR_KEY], book[TITLE_KEY], get_year(book[DATE_KEY]))
 
 # Задание 3
 bibliography = random.sample(rows, 20)
-print(bibliography)
 with open('bibliography.txt', 'w', encoding='utf-8') as file:
     for index, book in enumerate(bibliography, start=1):
         file.write(f"{index}. {book[AUTHOR_KEY]}. {book[TITLE_KEY]} - {get_year(book[DATE_KEY])}\n")
-print('Задание 3: Файл завершен')
+print('\nЗадание 3: Файл завершен')
 
 # Задание 4
 tree = ET.parse('currency.xml')
 root = tree.getroot()
 
-print('Задание 4:')
+print('\nЗадание 4:')
 for valute in root.findall('Valute'):
     nominal = int(valute.find('Nominal').text)
     if nominal == 1:
